@@ -1,0 +1,88 @@
+Task statement :
+***************
+
+Design a DB for IMDB
+--------------------
+
+1. Movie should have multiple media(Video or Image) 
+2. Movie can belongs to multiple Genre 
+3. Movie can have multiple reviews and Review can belongs to a user 
+4. Artist can have multiple skills 
+5. Artist can perform multiple role in a single film
+
+-------------------------------------------------------------------------------------------------------
+Table design :
+**************
+------------------------------------------------------------------------------------------------------
+
+**Movie Table**
+- movie_id  INT (primary key),
+- movie_title TEXT,
+- movie_description TEXT,
+- movie_release_year INT,
+- movie_rating  INT,
+- movie_runtime INT
+
+**Media Table**
+- media_id INT (primary key),
+- movie_id INT (foreign key to Movie table),
+- media_type TEXT (either video or image),
+- media_url  TEXT(CDN URL)
+
+**Genre Table**
+- genre_id INT(primary key),
+- genre_name TEXT
+
+**Movie_Genre Table**
+- movie_id INT(foreign key to Movie table),
+- genre_id INT(foreign key to Genre table)
+
+**User Table**
+- user_id INT(primary key),
+- user_name TEXT,
+- user_email TEXT
+
+**Review Table**
+- review_id INT(primary key),
+- review_text TEXT,
+- review_date INT,
+- user_id INT(foreign key to User table),
+- movie_id INT(foreign key to Movie table)
+
+**Artist Table**
+- artist_id INT(primary key),
+- artist_name TEXT
+
+**Skill Table**
+- skill_id INT(primary key),
+- skill_name TEXT
+
+**Artist_Skill Table**
+- artist_id INT(foreign key to Artist table),
+- skill_id INT(foreign key to Skill table)
+
+**Role Table**
+- role_id INT(primary key),
+- role_name TEXT
+
+**Artist_Role Table**
+- artist_id INT(foreign key to Artist table),
+- movie_id INT(foreign key to Movie table),
+- role_id INT(foreign key to Role table)
+
+----------------------------------------------------------------------------------
+Explanation:
+---------------------------------------------------------------------------------------
+- The Movie table stores information about movies, such as the title, description, release year, rating, and runtime.
+- The Media table stores information about the media associated with a movie, including the type (video or image) and the URL.
+- The Genre table stores information about movie genres.
+- The Movie_Genre table is a join table that establishes a many-to-many relationship between movies and genres.
+- The User table stores information about users who can write reviews.
+- The Review table stores information about reviews, including the review text, date, and the user and movie associated with the review.
+- The Artist table stores information about artists, such as their name.
+- The Skill table stores information about skills that artists can have.
+- The Artist_Skill table is a join table that establishes a many-to-many relationship between artists and skills.
+- The Role table stores information about roles that artists can perform in movies.
+- The Artist_Role table is a join table that establishes a many-to-many relationship between artists and movies, including the role performed by the artist.
+
+**********************************************************************************************************************************************************************************8
